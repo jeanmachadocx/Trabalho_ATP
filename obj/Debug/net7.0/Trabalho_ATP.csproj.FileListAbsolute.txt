@@ -1,0 +1,15 @@
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.csproj.AssemblyReference.cache
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.AssemblyInfoInputs.cache
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.AssemblyInfo.cs
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.csproj.CoreCompileInputs.cache
+C:\Users\Guilh\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.exe
+C:\Users\Guilh\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.deps.json
+C:\Users\Guilh\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.runtimeconfig.json
+C:\Users\Guilh\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.dll
+C:\Users\Guilh\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.pdb
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.dll
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\refint\Trabalho_ATP.dll
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.pdb
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.genruntimeconfig.cache
+C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\ref\Trabalho_ATP.dll
