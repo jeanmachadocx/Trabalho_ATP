@@ -63,17 +63,33 @@ class Program
 
     public static void printaMapa(char[,] m, int l, int c)
     {
-         Console.WriteLine("\n");
+         Console.WriteLine("    A B C D E F G H I");
+         int cont = 0;
         for (int i = 0; i < l; i++)
         {
+            cont++;
+            Console.Write(cont+ " - ");
             for (int j = 0; j < c; j++)
             {
-                
                 Console.Write(m [i,j] + " ");
             }
             Console.WriteLine();
         }
          Console.WriteLine("\n");
+    }
+
+    // METODO QUE VERIFICA SE A ENTRADA É UMA BOMBA 💣
+
+    public static bool vrfderrota (char [,] matriz ,int a, int b)
+    {
+        bool derrota = false;
+
+        if( matriz[a,b]== 'B')
+        {
+            derrota = true;
+        }
+
+        return derrota;
     }
 
 
@@ -96,22 +112,39 @@ class Program
             int linhas = contLinhas(conteudo);
             int colunas = contLinhas(conteudo);
 
-            string mapavet = conteudo.Replace("\n", "").Replace("\r", "");  // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA
-  
+            string mapavet = conteudo.Replace("\n", "").Replace("\r", "");  
+            char[,] mapa = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
 
-            
-
-            char[,] mapa = MapaMatriz(linhas, colunas, mapavet);
+            Console.WriteLine("Colunas: " + colunas + " Linhas: " + linhas + " Tamanho: " + mapavet.Length + "\n");
 
             printaMapa(mapa, linhas, colunas);
 
-            Console.WriteLine("Colunas: " + colunas + "\nLinhas: " + linhas + "\nTamanho: " + mapavet.Length);
 
+            int linhap;
+            int colunap;
+
+            bool wl = true;
+
+            while ( wl == true)
+            {
+                Console.Write("Digite as posições: ");
+                linhap = int.Parse(Console.ReadLine())+1;
+                colunap = int.Parse(Console.ReadLine())+1;
+
+                bool verifica = vrfderrota (mapa, linhap, colunap);
+
+                if (verifica==true)
+                {
+                    wl =false;
+                    Console.Write ("VOCÊ PERDEU!");
+                }
+
+            }
 
         }
         catch (FileNotFoundException) // VERIFICA SE O CAMINHO INFORMADO EXISTE 
         {
-            Console.WriteLine("Arquivo não encontrado! \nLembre de adicionar o caminho do mapa desejado dessa forma:  ex:'C:\\mapasexemplos\\mapa1.txt' ");
+            Console.WriteLine("Arquivo não encontrado! \nLembre-se de adicionar o caminho do mapa desejado dessa forma:  ex:'C:\\mapasexemplos\\mapa1.txt' ");
         }
 
     }
