@@ -8,7 +8,7 @@ class Program
     {
         int linhas = 0;
 
-        for (int i = 0; i <=161; i++)
+        for (int i = 0; i <=x.Length-1; i++)
         {
 
             if (x[i] == '\n')
@@ -25,7 +25,7 @@ class Program
     {
         int colunas = 0;
 
-        for (int i = 0; i <= 161; i++)
+        for (int i = 0; i <= x.Length-1; i++)
         {
             if (x[i] != '\n')
             {
@@ -47,19 +47,23 @@ class Program
         // VARIAVEL QUE RECEBERA DO USUÁRIO O LOCAL ONDE ESTA O MAPA 
 
        // Console.WriteLine("Digite o caminho do arquivo mapa: ");
-        string caminho = @"C:\mapasteste\mapa1.txt";
+        string caminho = @"C:\mapasteste\mapa2.txt";
 
 
         // VERIFICA SE O CAMINHO INFORMADO EXISTE 
         try
         {
             string conteudo = File.ReadAllText(caminho);
-            Console.WriteLine("\n" + conteudo + "\n");
+            conteudo = conteudo.Replace(" ","");
+            
 
             int linhas = contLinhas(conteudo);
             int colunas = contLinhas(conteudo);
 
-            Console.WriteLine("Colunas: " + colunas + "\nLinhas: " + linhas + "\nTamanho: " +conteudo.Length);
+            string mapavet = conteudo.Replace("\n", "").Replace("\r", "");
+            Console.WriteLine("\n" + mapavet + "\n");
+
+            Console.WriteLine("Colunas: " + colunas + "\nLinhas: "+ linhas + "\nTamanho: " +conteudo.Length);
 
         }
         catch (FileNotFoundException)
