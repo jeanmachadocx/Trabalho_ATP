@@ -40,9 +40,7 @@ class Program
         return colunas + 1;
     }
 
-
     //METODO QUE CONVERTE A STRING COM O CONTEUDO DO MAPA EM UMA MATRIZ
-
     public static char[,] MapaMatriz(int l, int c, string content)
     {
         char[,] mapa = new char[l, c];
@@ -59,38 +57,62 @@ class Program
         return mapa;
     }
 
-    // METODO QUE PRINTA O MAPA
-
-    public static void printaMapa(char[,] m, int l, int c)
-    {
-         Console.WriteLine("    A B C D E F G H I");
-         int cont = 0;
-        for (int i = 0; i < l; i++)
-        {
-            cont++;
-            Console.Write(cont+ " - ");
-            for (int j = 0; j < c; j++)
-            {
-                Console.Write(m [i,j] + " ");
-            }
-            Console.WriteLine();
-        }
-         Console.WriteLine("\n");
-    }
-
     // METODO QUE VERIFICA SE A ENTRADA É UMA BOMBA 💣
-
-    public static bool vrfderrota (char [,] matriz ,int a, int b)
+    public static bool vrfderrota(char[,] matriz, int a, int b)
     {
         bool derrota = false;
 
-        if( matriz[a,b]== 'B')
+        if (matriz[a, b] == 'B')
         {
             derrota = true;
         }
 
         return derrota;
     }
+
+    // METODO QUE CRIA UM MAPA COBERTO
+    public static char[,] mapacoberto(char[,] m, int a, int b)
+    {
+
+
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                m[i, j] = 'X';
+            }
+        }
+
+        return m;
+
+    }
+
+    //METODO QUE REVELA AS POSIÇÕES ADJCENTES 
+    public static char[,] revelamapa(char[,] m1, char[,] m2, int a, int b)
+    {
+        m2[a, b] = m1[a, b];
+        return m2;
+    }
+
+    // METODO QUE PRINTA UM MAPA COBERTO
+    public static void printamapaCoberto(int a, int b)
+    {
+        Console.WriteLine("    A B C D E F G H I\n");
+        int cont = 1;
+        char[,] m = new char[a, b];
+        for (int i = 0; i < a; i++)
+        {
+            Console.Write(cont++ + " - ");
+            for (int j = 0; j < b; j++)
+            {
+                m[i, j] = 'X';
+                Console.Write(m[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+
 
 
     static void Main()
@@ -112,12 +134,13 @@ class Program
             int linhas = contLinhas(conteudo);
             int colunas = contLinhas(conteudo);
 
-            string mapavet = conteudo.Replace("\n", "").Replace("\r", "");  
+            string mapavet = conteudo.Replace("\n", "").Replace("\r", "");
             char[,] mapa = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
+            char[,] mapaX = mapacoberto(mapa, linhas, colunas); // RECEBE UM MAPA COBERTO
 
-            Console.WriteLine("Colunas: " + colunas + " Linhas: " + linhas + " Tamanho: " + mapavet.Length + "\n");
 
-            printaMapa(mapa, linhas, colunas);
+
+
 
 
             int linhap;
@@ -125,21 +148,42 @@ class Program
 
             bool wl = true;
 
-            while ( wl == true)
+
+            // while (wl == true)
+            //{
+
+            printamapaCoberto(linhas, colunas);
+
+            Console.WriteLine("Digite a linha: ");
+            linhap = int.Parse(Console.ReadLine()) - 1;
+            Console.WriteLine("Digite a coluna: ");
+            colunap = int.Parse(Console.ReadLine()) - 1;
+
+            bool verifica = vrfderrota(mapa, linhap, colunap);
+
+            char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
+
+            if (verifica == true)
             {
-                Console.Write("Digite as posições: ");
-                linhap = int.Parse(Console.ReadLine())+1;
-                colunap = int.Parse(Console.ReadLine())+1;
-
-                bool verifica = vrfderrota (mapa, linhap, colunap);
-
-                if (verifica==true)
-                {
-                    wl =false;
-                    Console.Write ("VOCÊ PERDEU!");
-                }
-
+                wl = false;
+                Console.Write("VOCÊ PERDEU!");
             }
+            else
+            {
+                int cont = 1;
+                for (int g = 0; g < linhas; g++)
+                {
+                    Console.Write(cont++ + " - ");
+                    for (int a = 0; a < colunas; a++)
+                    {
+                        Console.Write(campo[g, a] + " ");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
+
+            //}
 
         }
         catch (FileNotFoundException) // VERIFICA SE O CAMINHO INFORMADO EXISTE 
