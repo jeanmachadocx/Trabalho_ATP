@@ -71,33 +71,35 @@ class Program
     }
 
     // METODO QUE CRIA UM MAPA COBERTO
-    public static char[,] mapacoberto(char[,] m, int a, int b)
+    public static char[,] mapacoberto( int a, int b)
     {
 
+        char [,] mapaX = new char[a, b];
 
         for (int i = 0; i < a; i++)
         {
             for (int j = 0; j < b; j++)
             {
-                m[i, j] = 'X';
+                mapaX[i, j] = 'X';
             }
         }
 
-        return m;
+        return mapaX;
 
     }
 
     //METODO QUE REVELA AS POSIÇÕES ADJCENTES 
     public static char[,] revelamapa(char[,] m1, char[,] m2, int a, int b)
     {
-        m2[a, b] = m1[a, b];
-        return m2;
+        m1[a, b] = m2[a, b];
+        return m1;
+        //char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
     }
 
     // METODO QUE PRINTA UM MAPA COBERTO
     public static void printamapaCoberto(int a, int b)
     {
-        Console.WriteLine("    A B C D E F G H I\n");
+        Console.Write("    A B C D E F G H I\n");
         int cont = 1;
         char[,] m = new char[a, b];
         for (int i = 0; i < a; i++)
@@ -136,9 +138,7 @@ class Program
 
             string mapavet = conteudo.Replace("\n", "").Replace("\r", "");
             char[,] mapa = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
-            char[,] mapaX = mapacoberto(mapa, linhas, colunas); // RECEBE UM MAPA COBERTO
-
-
+            char[,] mapaX = mapacoberto(linhas, colunas); // RECEBE UM MAPA COBERTO
 
 
 
@@ -146,18 +146,20 @@ class Program
             int linhap;
             int colunap;
 
+            printamapaCoberto(linhas, colunas);
+
             bool wl = true;
 
 
-            // while (wl == true)
-            //{
+             while (wl == true)
+            {
 
-            printamapaCoberto(linhas, colunas);
 
             Console.WriteLine("Digite a linha: ");
             linhap = int.Parse(Console.ReadLine()) - 1;
             Console.WriteLine("Digite a coluna: ");
             colunap = int.Parse(Console.ReadLine()) - 1;
+            Console.WriteLine();
 
             bool verifica = vrfderrota(mapa, linhap, colunap);
 
@@ -170,6 +172,7 @@ class Program
             }
             else
             {
+                Console.Write("    A B C D E F G H I\n");
                 int cont = 1;
                 for (int g = 0; g < linhas; g++)
                 {
@@ -183,7 +186,7 @@ class Program
                 Console.WriteLine();
             }
 
-            //}
+            }
 
         }
         catch (FileNotFoundException) // VERIFICA SE O CAMINHO INFORMADO EXISTE 
