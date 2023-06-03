@@ -71,10 +71,10 @@ class Program
     }
 
     // METODO QUE CRIA UM MAPA COBERTO
-    public static char[,] mapacoberto( int a, int b)
+    public static char[,] mapacoberto(int a, int b)
     {
 
-        char [,] mapaX = new char[a, b];
+        char[,] mapaX = new char[a, b];
 
         for (int i = 0; i < a; i++)
         {
@@ -92,6 +92,23 @@ class Program
     public static char[,] revelamapa(char[,] m1, char[,] m2, int a, int b)
     {
         m1[a, b] = m2[a, b];
+
+        // PRINTA A POSIÇÃO ACIMA E ABAIXO 
+        m1[a - 1, b] = m2[a - 1, b];
+        m1[a + 1, b] = m2[a + 1, b];
+
+        // PRINTA ESQUERDA E DIREITA 
+        m1[a, b - 1] = m2[a, b - 1];
+        m1[a, b + 1] = m2[a, b + 1];
+
+        // PRINTA AS DIAGONAIS SUPERIORES
+        m1[a - 1, b - 1] = m2[a - 1, b - 1];
+        m1[a - 1, b + 1] = m2[a - 1, b + 1];
+
+        // PRINTA AS DIAGONAIS INFERIORES
+        m1[a + 1, b - 1] = m2[a + 1, b - 1];
+        m1[a + 1, b + 1] = m2[a + 1, b + 1];
+
         return m1;
         //char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
     }
@@ -104,7 +121,12 @@ class Program
         char[,] m = new char[a, b];
         for (int i = 0; i < a; i++)
         {
-            Console.Write(cont++ + " - ");
+            if (cont > 9)
+            {
+                Console.Write(cont++ + "- ");
+            }
+            else
+                Console.Write(cont++ + " - ");
             for (int j = 0; j < b; j++)
             {
                 m[i, j] = 'X';
@@ -123,7 +145,7 @@ class Program
         // VARIAVEL QUE RECEBERA DO USUÁRIO O LOCAL ONDE ESTA O MAPA 
 
         // Console.WriteLine("Digite o caminho do arquivo mapa: ");
-        string caminho = @"C:\mapasteste\mapa2.txt";
+        string caminho = @"C:\mapasteste\mapa1.txt";
 
 
 
@@ -151,40 +173,45 @@ class Program
             bool wl = true;
 
 
-             while (wl == true)
+            while (wl == true)
             {
 
 
-            Console.WriteLine("Digite a linha: ");
-            linhap = int.Parse(Console.ReadLine()) - 1;
-            Console.WriteLine("Digite a coluna: ");
-            colunap = int.Parse(Console.ReadLine()) - 1;
-            Console.WriteLine();
+                Console.WriteLine("Digite a linha: ");
+                linhap = int.Parse(Console.ReadLine()) - 1;
+                Console.WriteLine("Digite a coluna: ");
+                colunap = int.Parse(Console.ReadLine()) - 1;
+                Console.WriteLine();
 
-            bool verifica = vrfderrota(mapa, linhap, colunap);
+                bool verifica = vrfderrota(mapa, linhap, colunap);
 
-            char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
+                char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
 
-            if (verifica == true)
-            {
-                wl = false;
-                Console.Write("VOCÊ PERDEU!");
-            }
-            else
-            {
-                Console.Write("    A B C D E F G H I\n");
-                int cont = 1;
-                for (int g = 0; g < linhas; g++)
+                if (verifica == true)
                 {
-                    Console.Write(cont++ + " - ");
-                    for (int a = 0; a < colunas; a++)
+                    wl = false;
+                    Console.Write("VOCÊ PERDEU!");
+                }
+                else
+                {
+                    Console.Write("    A B C D E F G H I\n");
+                    int cont = 1;
+                    for (int g = 0; g < linhas; g++)
                     {
-                        Console.Write(campo[g, a] + " ");
+                        if (cont > 9)
+                        {
+                            Console.Write(cont++ + "- ");
+                        }
+                        else
+                            Console.Write(cont++ + " - ");
+                        for (int a = 0; a < colunas; a++)
+                        {
+                            Console.Write(campo[g, a] + " ");
+                        }
+                        Console.WriteLine();
                     }
                     Console.WriteLine();
                 }
-                Console.WriteLine();
-            }
 
             }
 
