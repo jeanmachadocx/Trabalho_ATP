@@ -1,6 +1,4 @@
-﻿
-
-class Program
+﻿class Program
 {
 
     // METODO QUE CONTA QUANTAS LINHAS TEM O MAPA INFORMADO
@@ -159,12 +157,12 @@ class Program
             int colunas = contLinhas(conteudo);
 
             string mapavet = conteudo.Replace("\n", "").Replace("\r", "");
-            char[,] mapa = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
+            char[,] mapaGabarito = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
             char[,] mapaX = mapacoberto(linhas, colunas); // RECEBE UM MAPA COBERTO
 
 
 
-
+            // VARIAVEIS QUE RECEBEM A COORDENADA DIGITADA
             int linhap;
             int colunap;
 
@@ -183,9 +181,9 @@ class Program
                 colunap = int.Parse(Console.ReadLine()) - 1;
                 Console.WriteLine();
 
-                bool verifica = vrfderrota(mapa, linhap, colunap);
+                bool verifica = vrfderrota(mapaGabarito, linhap, colunap);
 
-                char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
+                char[,] campo = revelamapa(mapaX, mapaGabarito, linhap, colunap);
 
                 if (verifica == true)
                 {
