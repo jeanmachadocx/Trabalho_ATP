@@ -1,6 +1,5 @@
 ﻿class Program
 {
-
     // METODO QUE CONTA QUANTAS LINHAS TEM O MAPA INFORMADO
     public static int contLinhas(string x)
     {
@@ -87,29 +86,44 @@
     }
 
     //METODO QUE REVELA AS POSIÇÕES ADJCENTES 
-    public static char[,] revelamapa(char[,] m1, char[,] m2, int a, int b)
+    public static char[,] RevelaMapa(char[,] m1, char[,] m2, int a, int b)
     {
-        m1[a, b] = m2[a, b];
+        int linhas = m1.GetLength(0);
+        int colunas = m1.GetLength(1);
 
-        // PRINTA A POSIÇÃO ACIMA E ABAIXO 
-        m1[a - 1, b] = m2[a - 1, b];
-        m1[a + 1, b] = m2[a + 1, b];
+        if (a >= 0 && a < linhas && b >= 0 && b < colunas)
+        {
+            m1[a, b] = m2[a, b];
 
-        // PRINTA ESQUERDA E DIREITA 
-        m1[a, b - 1] = m2[a, b - 1];
-        m1[a, b + 1] = m2[a, b + 1];
+            // Verificações para as posições acima e abaixo
+            if (a - 1 >= 0)
+                m1[a - 1, b] = m2[a - 1, b];
+            if (a + 1 < linhas)
+                m1[a + 1, b] = m2[a + 1, b];
 
-        // PRINTA AS DIAGONAIS SUPERIORES
-        m1[a - 1, b - 1] = m2[a - 1, b - 1];
-        m1[a - 1, b + 1] = m2[a - 1, b + 1];
+            // Verificações para as posições à esquerda e à direita
+            if (b - 1 >= 0)
+                m1[a, b - 1] = m2[a, b - 1];
+            if (b + 1 < colunas)
+                m1[a, b + 1] = m2[a, b + 1];
 
-        // PRINTA AS DIAGONAIS INFERIORES
-        m1[a + 1, b - 1] = m2[a + 1, b - 1];
-        m1[a + 1, b + 1] = m2[a + 1, b + 1];
+            // Verificações para as diagonais superiores
+            if (a - 1 >= 0 && b - 1 >= 0)
+                m1[a - 1, b - 1] = m2[a - 1, b - 1];
+            if (a - 1 >= 0 && b + 1 < colunas)
+                m1[a - 1, b + 1] = m2[a - 1, b + 1];
+
+            // Verificações para as diagonais inferiores
+            if (a + 1 < linhas && b - 1 >= 0)
+                m1[a + 1, b - 1] = m2[a + 1, b - 1];
+            if (a + 1 < linhas && b + 1 < colunas)
+                m1[a + 1, b + 1] = m2[a + 1, b + 1];
+        }
 
         return m1;
-        //char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
     }
+
+
 
     // METODO QUE PRINTA UM MAPA COBERTO
     public static void printamapaCoberto(int a, int b)
@@ -143,7 +157,7 @@
         // VARIAVEL QUE RECEBERA DO USUÁRIO O LOCAL ONDE ESTA O MAPA 
 
         // Console.WriteLine("Digite o caminho do arquivo mapa: ");
-        string caminho = @"C:\mapasteste\mapa1.txt";
+        string caminho = @"C:\mapasteste\mapa2.txt";
 
 
 
@@ -152,14 +166,13 @@
             string conteudo = File.ReadAllText(caminho);
             conteudo = conteudo.Replace(" ", "");       // ARMAZENA TODO O TEXTO DO TXT EM UMA STRING, LOGO DEPOIS RETIRA TODO O ESPAÇO VAZIO
 
-
+            
             int linhas = contLinhas(conteudo);
             int colunas = contLinhas(conteudo);
 
             string mapavet = conteudo.Replace("\n", "").Replace("\r", "");
             char[,] mapaGabarito = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
             char[,] mapaX = mapacoberto(linhas, colunas); // RECEBE UM MAPA COBERTO
-
 
 
             // VARIAVEIS QUE RECEBEM A COORDENADA DIGITADA
@@ -174,7 +187,6 @@
             while (wl == true)
             {
 
-
                 Console.WriteLine("Digite a linha: ");
                 linhap = int.Parse(Console.ReadLine()) - 1;
                 Console.WriteLine("Digite a coluna: ");
@@ -183,12 +195,30 @@
 
                 bool verifica = vrfderrota(mapaGabarito, linhap, colunap);
 
-                char[,] campo = revelamapa(mapaX, mapaGabarito, linhap, colunap);
+                char[,] campo = RevelaMapa(mapaX, mapaGabarito, linhap, colunap);
 
                 if (verifica == true)
                 {
                     wl = false;
+                    Console.Write("    A B C D E F G H I\n");
+                    int cont = 1;
+                    for (int g = 0; g < linhas; g++)
+                    {
+                        if (cont > 9)
+                        {
+                            Console.Write(cont++ + "- ");
+                        }
+                        else
+                            Console.Write(cont++ + " - ");
+                        for (int a = 0; a < colunas; a++)
+                        {
+                            Console.Write(campo[g, a] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine();
                     Console.Write("VOCÊ PERDEU!");
+
                 }
                 else
                 {
@@ -212,7 +242,6 @@
                 }
 
             }
-
         }
         catch (FileNotFoundException) // VERIFICA SE O CAMINHO INFORMADO EXISTE 
         {
