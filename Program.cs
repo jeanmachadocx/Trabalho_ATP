@@ -22,20 +22,21 @@
     {
         int colunas = 0;
 
-        for (int i = 0; i <= x.Length - 1; i++)
+        for (int i = 0; i < x.Length; i++)
         {
             if (x[i] != '\n')
             {
                 colunas++;
-
             }
             else
             {
                 break;
             }
         }
-        return colunas + 1;
+
+        return colunas-1;
     }
+
 
     //METODO QUE CONVERTE A STRING COM O CONTEUDO DO MAPA EM UMA MATRIZ
     public static char[,] MapaMatriz(int l, int c, string content)
@@ -47,12 +48,16 @@
         {
             for (int j = 0; j < c; j++)
             {
-                mapa[i, j] = content[index++];
+                if (index < content.Length)
+                    mapa[i, j] = content[index++];
+                else
+                    mapa[i, j] = ' ';  // Ou algum valor padrão para preencher a matriz incompleta
             }
         }
 
         return mapa;
     }
+
 
     // METODO QUE VERIFICA SE A ENTRADA É UMA BOMBA 💣
     public static bool vrfderrota(char[,] matriz, int a, int b)
@@ -166,9 +171,9 @@
             string conteudo = File.ReadAllText(caminho);
             conteudo = conteudo.Replace(" ", "");       // ARMAZENA TODO O TEXTO DO TXT EM UMA STRING, LOGO DEPOIS RETIRA TODO O ESPAÇO VAZIO
 
-            
+
             int linhas = contLinhas(conteudo);
-            int colunas = contLinhas(conteudo);
+            int colunas = contColunas(conteudo);
 
             string mapavet = conteudo.Replace("\n", "").Replace("\r", "");
             char[,] mapaGabarito = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
