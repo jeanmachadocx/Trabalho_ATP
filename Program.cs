@@ -34,7 +34,7 @@
             }
         }
 
-        return colunas-1;
+        return colunas - 1;
     }
 
 
@@ -133,7 +133,6 @@
     // METODO QUE PRINTA UM MAPA COBERTO
     public static void printamapaCoberto(int a, int b)
     {
-        Console.Write("    A B C D E F G H I\n");
         int cont = 1;
         char[,] m = new char[a, b];
         for (int i = 0; i < a; i++)
@@ -155,6 +154,30 @@
     }
 
 
+    public static bool VerfWin(char[,] matriz, int a, int b)
+    {
+        bool vitoria = false;
+        int contaX = 0;
+
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                if (matriz[i, j] == 'X')
+                {
+                    contaX++;
+                }
+            }
+        }
+        if (contaX > 0)
+        {
+            vitoria = false;
+        }
+        else
+            vitoria = true;
+
+        return vitoria;
+    }
 
     static void Main()
     {
@@ -162,7 +185,7 @@
         // VARIAVEL QUE RECEBERA DO USUÁRIO O LOCAL ONDE ESTA O MAPA 
 
         // Console.WriteLine("Digite o caminho do arquivo mapa: ");
-        string caminho = @"C:\mapasteste\mapa2.txt";
+        string caminho = @"C:\mapasteste\mapa3.txt";
 
 
 
@@ -198,16 +221,16 @@
                 colunap = int.Parse(Console.ReadLine()) - 1;
                 Console.WriteLine();
 
-                bool verifica = vrfderrota(mapaGabarito, linhap, colunap);
-
+                bool verificaDerrota = vrfderrota(mapaGabarito, linhap, colunap);
                 char[,] campo = RevelaMapa(mapaX, mapaGabarito, linhap, colunap);
+                bool verificaWin = VerfWin(campo, linhas, colunas);
 
-                if (verifica == true)
+                if (verificaDerrota == true)
                 {
                     wl = false;
-                    Console.Write("    A B C D E F G H I\n");
+                    Console.WriteLine();
                     int cont = 1;
-                    for (int g = 0; g < linhas; g++)
+                    for (int g = 0; g < linhas; g++)    
                     {
                         if (cont > 9)
                         {
@@ -225,9 +248,30 @@
                     Console.Write("VOCÊ PERDEU!");
 
                 }
+                else if (verificaWin == true)
+                {
+                    int cont = 1;
+                    for (int g = 0; g < linhas; g++)
+                    {
+                        if (cont > 9)
+                        {
+                            Console.Write(cont++ + "- ");
+                        }
+                        else
+                            Console.Write(cont++ + " - ");
+                        for (int a = 0; a < colunas; a++)
+                        {
+                            Console.Write(campo[g, a] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine();
+                    Console.Write("VOCÊ GANHOU!");
+                    break;
+                }
                 else
                 {
-                    Console.Write("    A B C D E F G H I\n");
+
                     int cont = 1;
                     for (int g = 0; g < linhas; g++)
                     {
