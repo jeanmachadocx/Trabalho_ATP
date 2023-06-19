@@ -106,7 +106,7 @@
                 m1[a - 1, b] = m2[a - 1, b];
                 if (m2[a - 1, b] == 'B')
                 {
-                    m1[a - 1, b] = 'X'; 
+                    m1[a - 1, b] = 'X';
                 }
             }
             if (a + 1 < linhas)
@@ -118,7 +118,7 @@
                 }
             }
             // Verificações para as posições à esquerda e à direita
-            
+
             if (b - 1 >= 0) //esquerda
             {
                 m1[a, b - 1] = m2[a, b - 1];
@@ -200,10 +200,11 @@
     }
 
 
-    public static bool VerfWin(char[,] matriz, int a, int b)
+    public static bool VerfWin(char[,] matriz,char [,] gabarito ,int a, int b)
     {
         bool vitoria = false;
         int contaX = 0;
+        int contaB = 0;
 
         for (int i = 0; i < a; i++)
         {
@@ -211,11 +212,21 @@
             {
                 if (matriz[i, j] == 'X')
                 {
-                    contaX++;
+                    contaX++;                  
                 }
             }
         }
-        if (contaX > 0)
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                if (gabarito[i, j] == 'B')
+                {
+                    contaB++;
+                }
+            }
+        }
+        if (contaX != contaB)
         {
             vitoria = false;
         }
@@ -271,7 +282,7 @@
                 //RECEBE OS METODOS DE VITORIA, DERROTA E DE ATUALIZAÇÃO DO MAPA
                 bool verificaDerrota = vrfderrota(mapaGabarito, linhap, colunap);
                 char[,] campo = RevelaMapa(mapaX, mapaGabarito, linhap, colunap, linhas, colunas);
-                bool verificaWin = VerfWin(campo, linhas, colunas);
+                bool verificaWin = VerfWin(campo,mapaGabarito ,linhas, colunas);
 
                 if (verificaDerrota == true) // VERIFICA SE O USUARIO PERDEU E ENCERRA O WHILE
                 {
