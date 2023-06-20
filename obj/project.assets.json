@@ -8,23 +8,23 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Guilh\\.nuget\\packages\\": {},
+    "C:\\Users\\jeanc\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Guilh\\Trabalho_ATP\\Trabalho_ATP.csproj",
+      "projectUniqueName": "C:\\Users\\jeanc\\PUC 2023.1\\Trabalho Atp\\Trabalho_ATP\\Trabalho_ATP.csproj",
       "projectName": "Trabalho_ATP",
-      "projectPath": "C:\\Users\\Guilh\\Trabalho_ATP\\Trabalho_ATP.csproj",
-      "packagesPath": "C:\\Users\\Guilh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Guilh\\Trabalho_ATP\\obj\\",
+      "projectPath": "C:\\Users\\jeanc\\PUC 2023.1\\Trabalho Atp\\Trabalho_ATP\\Trabalho_ATP.csproj",
+      "packagesPath": "C:\\Users\\jeanc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jeanc\\PUC 2023.1\\Trabalho Atp\\Trabalho_ATP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Guilh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jeanc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -66,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

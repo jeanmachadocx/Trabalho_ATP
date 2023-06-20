@@ -13,3 +13,18 @@ C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\refint\Trabalho_ATP.dll
 C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.pdb
 C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.genruntimeconfig.cache
 C:\Users\Guilh\Trabalho_ATP\obj\Debug\net7.0\ref\Trabalho_ATP.dll
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.exe
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.deps.json
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.runtimeconfig.json
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.dll
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\bin\Debug\net7.0\Trabalho_ATP.pdb
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.csproj.AssemblyReference.cache
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.AssemblyInfoInputs.cache
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.AssemblyInfo.cs
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.csproj.CoreCompileInputs.cache
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.dll
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\refint\Trabalho_ATP.dll
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.pdb
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\Trabalho_ATP.genruntimeconfig.cache
+C:\Users\jeanc\PUC 2023.1\Trabalho Atp\Trabalho_ATP\obj\Debug\net7.0\ref\Trabalho_ATP.dll

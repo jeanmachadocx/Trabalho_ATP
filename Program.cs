@@ -1,62 +1,9 @@
 ﻿class Program
 {
-
-    // METODO QUE CONTA QUANTAS LINHAS TEM O MAPA INFORMADO
-    public static int contLinhas(string x)
-    {
-        int linhas = 0;
-
-        for (int i = 0; i <= x.Length - 1; i++)
-        {
-
-            if (x[i] == '\n')
-            {
-                linhas++;
-
-            }
-        }
-        return linhas + 1;
-    }
-
-    //METODO QUE CONTA QUANTAS COLUNAS TEM O MATA INFORMADO
-    public static int contColunas(string x)
-    {
-        int colunas = 0;
-
-        for (int i = 0; i <= x.Length - 1; i++)
-        {
-            if (x[i] != '\n')
-            {
-                colunas++;
-
-            }
-            else
-            {
-                break;
-            }
-        }
-        return colunas + 1;
-    }
-
-    //METODO QUE CONVERTE A STRING COM O CONTEUDO DO MAPA EM UMA MATRIZ
-    public static char[,] MapaMatriz(int l, int c, string content)
-    {
-        char[,] mapa = new char[l, c];
-
-        int index = 0;
-        for (int i = 0; i < l; i++)
-        {
-            for (int j = 0; j < c; j++)
-            {
-                mapa[i, j] = content[index++];
-            }
-        }
-
-        return mapa;
-    }
-
-    // METODO QUE VERIFICA SE A ENTRADA É UMA BOMBA 💣
+    // METODO QUE VERIFICA DERROTA
     public static bool vrfderrota(char[,] matriz, int a, int b)
+
+
     {
         bool derrota = false;
 
@@ -66,6 +13,43 @@
         }
 
         return derrota;
+    }
+
+    // METODO VERIFICA VITORIA
+    public static bool VerfWin(char[,] matriz, char[,] gabarito, int a, int b)
+    {
+        bool vitoria = false;
+        int contaX = 0;
+        int contaB = 0;
+
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                if (matriz[i, j] == 'X')
+                {
+                    contaX++;
+                }
+            }
+        }
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                if (gabarito[i, j] == 'B')
+                {
+                    contaB++;
+                }
+            }
+        }
+        if (contaX != contaB)
+        {
+            vitoria = false;
+        }
+        else
+            vitoria = true;
+
+        return vitoria;
     }
 
     // METODO QUE CRIA UM MAPA COBERTO
@@ -87,36 +71,95 @@
     }
 
     //METODO QUE REVELA AS POSIÇÕES ADJCENTES 
-    public static char[,] revelamapa(char[,] m1, char[,] m2, int a, int b)
+    public static char[,] RevelaMapa(char[,] m1, char[,] m2, int a, int b, int l, int c)
     {
-        m1[a, b] = m2[a, b];
+        int linhas = l;
+        int colunas = c;
 
-        // PRINTA A POSIÇÃO ACIMA E ABAIXO 
-        m1[a - 1, b] = m2[a - 1, b];
-        m1[a + 1, b] = m2[a + 1, b];
+        if (a >= 0 && a < linhas && b >= 0 && b < colunas)
+        {
+            m1[a, b] = m2[a, b]; // m2 = mapa com X e m1 = gabarito 
 
-        // PRINTA ESQUERDA E DIREITA 
-        m1[a, b - 1] = m2[a, b - 1];
-        m1[a, b + 1] = m2[a, b + 1];
+            // Verificações para as posições acima e abaixo
+            if (a - 1 >= 0)
+            {
+                m1[a - 1, b] = m2[a - 1, b];
+                if (m2[a - 1, b] == 'B')
+                {
+                    m1[a - 1, b] = 'X';
+                }
+            }
+            if (a + 1 < linhas)
+            {
+                m1[a + 1, b] = m2[a + 1, b];
+                if (m2[a + 1, b] == 'B')
+                {
+                    m1[a + 1, b] = 'X';
+                }
+            }
+            // Verificações para as posições à esquerda e à direita
 
-        // PRINTA AS DIAGONAIS SUPERIORES
-        m1[a - 1, b - 1] = m2[a - 1, b - 1];
-        m1[a - 1, b + 1] = m2[a - 1, b + 1];
-
-        // PRINTA AS DIAGONAIS INFERIORES
-        m1[a + 1, b - 1] = m2[a + 1, b - 1];
-        m1[a + 1, b + 1] = m2[a + 1, b + 1];
+            if (b - 1 >= 0) //esquerda
+            {
+                m1[a, b - 1] = m2[a, b - 1];
+                if (m2[a, b - 1] == 'B')
+                {
+                    m1[a, b - 1] = 'X';
+                }
+            }
+            if (b + 1 < colunas) //DIREITA 
+            {
+                m1[a, b + 1] = m2[a, b + 1];
+                if (m2[a, b + 1] == 'B')
+                {
+                    m1[a, b + 1] = 'X';
+                }
+            }
+            // Verificações para as diagonais superiores
+            if (a - 1 >= 0 && b - 1 >= 0)
+            {
+                m1[a - 1, b - 1] = m2[a - 1, b - 1];
+                if (m2[a - 1, b - 1] == 'B')
+                {
+                    m1[a - 1, b - 1] = 'X';
+                }
+            }
+            if (a - 1 >= 0 && b + 1 < colunas)
+            {
+                m1[a - 1, b + 1] = m2[a - 1, b + 1];
+                if (m2[a - 1, b + 1] == 'B')
+                {
+                    m1[a - 1, b + 1] = 'X';
+                }
+            }
+            // Verificações para as diagonais inferiores
+            if (a + 1 < linhas && b - 1 >= 0)
+            {
+                m1[a + 1, b - 1] = m2[a + 1, b - 1];
+                if (m2[a + 1, b - 1] == 'B')
+                {
+                    m1[a + 1, b - 1] = 'X';
+                }
+            }
+            if (a + 1 < linhas && b + 1 < colunas)
+            {
+                m1[a + 1, b + 1] = m2[a + 1, b + 1];
+                if (m2[a + 1, b + 1] == 'B')
+                {
+                    m1[a + 1, b + 1] = 'X';
+                }
+            }
+        }
 
         return m1;
-        //char[,] campo = revelamapa(mapaX, mapa, linhap, colunap);
     }
 
     // METODO QUE PRINTA UM MAPA COBERTO
     public static void printamapaCoberto(int a, int b)
     {
-        Console.Write("    A B C D E F G H I\n");
         int cont = 1;
         char[,] m = new char[a, b];
+        int[] indicaColunas = new int[b];
         for (int i = 0; i < a; i++)
         {
             if (cont > 9)
@@ -132,10 +175,43 @@
             }
             Console.WriteLine();
         }
-        Console.WriteLine();
+        Console.Write("    ");
+        for (int i = 0; i < b; i++)
+        {
+            indicaColunas[i] = i + 1;
+            Console.Write(indicaColunas[i] + " ");
+        }
+        Console.WriteLine("\n");
+    }
+
+    //METODO QUE CRIA UMA MATRIZ COM O GABARITO 
+    public static char[,] Gabarito(int l, int c, int b)
+    {
+        char[,] mapa = new char[l, c];
+
+        Random rd = new Random();
+
+        for (int i = 0; i < b; i++)
+        {
+            int linha = rd.Next(l);
+            int coluna = rd.Next(c);
+
+            if (mapa[linha, coluna] != -1)
+            {
+                mapa[linha, coluna] = 'B';
+            }
+            else
+            {
+                i--;
+            }
+        }
+
+        return mapa;
     }
 
 
+
+    // METODO QUE CRIA UMA MATRIZ COM O GABARITO 
 
     static void Main()
     {
@@ -145,54 +221,106 @@
         // Console.WriteLine("Digite o caminho do arquivo mapa: ");
         string caminho = @"C:\mapasteste\mapa1.txt";
 
-
-
+        int linhas = 0, colunas = 0, bomba = 0;
         try
         {
-            string conteudo = File.ReadAllText(caminho);
-            conteudo = conteudo.Replace(" ", "");       // ARMAZENA TODO O TEXTO DO TXT EM UMA STRING, LOGO DEPOIS RETIRA TODO O ESPAÇO VAZIO
+            // LE O ARQUIVO E ARMAZENA O NUMERO DE LINHAS, COLUNAS E BOMBAS.
+            using (StreamReader sr = new StreamReader(caminho))
+            {
+                int caractere;
 
+                // Lê e exibe cada caractere do arquivo até o final
+                while ((caractere = sr.Read()) != -1)
+                {
+                    char caractereChar = (char)caractere;
 
-            int linhas = contLinhas(conteudo);
-            int colunas = contLinhas(conteudo);
+                    if (char.IsDigit(caractereChar))
+                    {
+                        int numero = int.Parse(caractereChar.ToString());
 
-            string mapavet = conteudo.Replace("\n", "").Replace("\r", "");
-            char[,] mapaGabarito = MapaMatriz(linhas, colunas, mapavet); // ARMAZENA TODO O CONTEUDO NOVAMENTE EM UMA STRING MAS SEM CONTABILIZAR AS QUEBRAS DE LINHA E DPS EM UMA MATRIZ
-            char[,] mapaX = mapacoberto(linhas, colunas); // RECEBE UM MAPA COBERTO
+                        if (linhas == 0)
+                            linhas = numero;
+                        else if (colunas == 0)
+                            colunas = numero;
+                        else if (bomba == 0)
+                            bomba = numero;
+                    }
+                }
+            }
 
-
-
-            // VARIAVEIS QUE RECEBEM A COORDENADA DIGITADA
-            int linhap;
-            int colunap;
-
+            Console.WriteLine(+linhas + " Linhas, " + colunas + " colunas e " + bomba + " bombas.");
+            Console.WriteLine();
             printamapaCoberto(linhas, colunas);
+
+            // WHILE QUE RODA O MAPA ATE A DERROTA OU VITORIA DO JOGADOR 
 
             bool wl = true;
 
+            char[,] mapaX = mapacoberto(linhas, colunas);
+            char[,] campo = Gabarito(linhas, colunas, bomba);
 
             while (wl == true)
             {
-
-
+                // RECEBE AS COORDENADAS
                 Console.WriteLine("Digite a linha: ");
                 linhap = int.Parse(Console.ReadLine()) - 1;
                 Console.WriteLine("Digite a coluna: ");
                 colunap = int.Parse(Console.ReadLine()) - 1;
                 Console.WriteLine();
 
-                bool verifica = vrfderrota(mapaGabarito, linhap, colunap);
 
-                char[,] campo = revelamapa(mapaX, mapaGabarito, linhap, colunap);
+                //RECEBE OS METODOS DE VITORIA, DERROTA E DE ATUALIZAÇÃO DO MAPA
+                bool verificaDerrota = vrfderrota(mapaGabarito, linhap, colunap);
+                char[,] campo = RevelaMapa(mapaX, mapaGabarito, linhap, colunap, linhas, colunas);
+                bool verificaWin = VerfWin(campo, mapaGabarito, linhas, colunas);
 
-                if (verifica == true)
+                if (verificaDerrota == true) // VERIFICA SE O USUARIO PERDEU E ENCERRA O WHILE
                 {
                     wl = false;
+                    Console.WriteLine();
+                    int cont = 1;
+                    for (int g = 0; g < linhas; g++)
+                    {
+                        if (cont > 9)
+                        {
+                            Console.Write(cont++ + "- ");
+                        }
+                        else
+                            Console.Write(cont++ + " - ");
+                        for (int a = 0; a < colunas; a++)
+                        {
+                            Console.Write(campo[g, a] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine();
                     Console.Write("VOCÊ PERDEU!");
+
                 }
-                else
+                else if (verificaWin == true) // VERIFICA SE O USUARIO GANHOU E ENCERRA O WHILE
                 {
-                    Console.Write("    A B C D E F G H I\n");
+                    int cont = 1;
+                    for (int g = 0; g < linhas; g++)
+                    {
+                        if (cont > 9)
+                        {
+                            Console.Write(cont++ + "- ");
+                        }
+                        else
+                            Console.Write(cont++ + " - ");
+                        for (int a = 0; a < colunas; a++)
+                        {
+                            Console.Write(campo[g, a] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine();
+                    Console.Write("VOCÊ GANHOU!");
+                    break;
+                }
+                else // PRINTA O MAPA DENTRO DO WHILE ATUALIZANDO DE ACORDO COM AS COODERNADAS DIGITAS 
+                {
+
                     int cont = 1;
                     for (int g = 0; g < linhas; g++)
                     {
@@ -212,8 +340,9 @@
                 }
 
             }
-
+        
         }
+
         catch (FileNotFoundException) // VERIFICA SE O CAMINHO INFORMADO EXISTE 
         {
             Console.WriteLine("Arquivo não encontrado! \nLembre-se de adicionar o caminho do mapa desejado dessa forma:  ex:'C:\\mapasexemplos\\mapa1.txt' ");
