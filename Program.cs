@@ -183,7 +183,7 @@
         Console.WriteLine("\n");
     }
 
-    //METODO QUE CRIA UMA MATRIZ COM O GABARITO 
+    //METODO QUE PREENCHE A MATRIZ
     public static char[,] Gabarito(int l, int c, int b)
     {
         char[,] mapa = new char[l, c];
