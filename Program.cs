@@ -174,7 +174,7 @@
             }
             Console.WriteLine();
         }
-        Console.Write("    ");
+        Console.Write("\n" + "    ");
         for (int i = 0; i < b; i++)
         {
             indicaColunas[i] = i + 1;
@@ -335,6 +335,7 @@
             while (wl == true)
             {
                 // RECEBE AS COORDENADAS
+                Console.WriteLine();
                 Console.WriteLine("Digite a linha: ");
                 int linhap = int.Parse(Console.ReadLine()) - 1;
                 Console.WriteLine("Digite a coluna: ");
@@ -367,7 +368,7 @@
                         }
                         Console.WriteLine();
                     }
-                    Console.Write("    ");
+                    Console.Write("\n" + "    ");
                     for (int i = 0; i < colunas; i++)
                     {
                         indicaColunas[i] = i + 1;
@@ -395,7 +396,7 @@
                         }
                         Console.WriteLine();
                     }
-                    Console.Write("    ");
+                    Console.Write("\n" + "    ");
                     for (int i = 0; i < colunas; i++)
                     {
                         indicaColunas[i] = i + 1;
@@ -423,7 +424,7 @@
                         }
                         Console.WriteLine();
                     }
-                    Console.Write("    ");
+                    Console.Write( "\n" + "    ");
                     for (int i = 0; i < colunas; i++)
                     {
                         indicaColunas[i] = i + 1;
