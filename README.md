@@ -4,7 +4,6 @@ Nesse repositório será documentado o nosso trabalho de Algoritmos e Técnicas 
 
 Integrantes:
 
-Jean Carlo;
-Guilherme Henrique;
-Vinicíus Morais;
-Lucca Cenisio.
+Jean Carlo; <br>
+Guilherme Henrique.
+
